@@ -74,7 +74,7 @@ INSERT INTO types_conge (libelle, jours_annuels, deductible) VALUES
   ('Congé sans solde',    0, 0);
 
 INSERT INTO employes (nom, prenom, email, password, role, departement_id, date_embauche, actif) VALUES
-  ('Admin',   'Sys',    'admin@techmada.mg',   '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin',   2, '2022-01-01', 1),
+  ('Admin',   'Sys',    'admin@techmada.mg',   '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin',   2, '2022-01-01', 1), 
   ('Rakoto',  'Jean',   'jean@techmada.mg',    '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'employe', 1, '2023-03-15', 1),
   ('Rasoa',   'Marie',  'marie@techmada.mg',   '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'rh',      2, '2022-06-01', 1);
 

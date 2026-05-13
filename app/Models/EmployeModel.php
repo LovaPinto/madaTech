@@ -31,8 +31,7 @@ class EmployeModel extends Model
     // Casts pour correspondre aux types SQLite
     protected array $casts = [
         'actif' => 'boolean',
-        'departement_id' => 'integer',
-        'date_embauche' => 'date'
+        'departement_id' => 'integer'
     ];
 
     protected array $castHandlers = [];
