@@ -99,3 +99,8 @@ SELECT
 FROM soldes s
 JOIN employes    e  ON e.id  = s.employe_id
 JOIN types_conge tc ON tc.id = s.type_conge_id;
+
+php spark make:model TypeCongeModel
+php spark make:model SoldeModel
+php spark make:model CongeModel
+
