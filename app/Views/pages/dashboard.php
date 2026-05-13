@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="<?= base_url('assets/style.css') ?>">
     <title>Document</title>
 </head>
 <body>
-         ║  PAGE 2 — DASHBOARD EMPLOYÉ  (employe/dashboard.php)        ║
-     ╚══════════════════════════════════════════════════════════════╝ -->
 <section id="page-dashboard-employe" style="margin-top:3rem">
 <div class="app-wrap">
 
