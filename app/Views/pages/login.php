@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= base_url('assets/style.css') ?>">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
     <title>Document</title>
 </head>
 <body>
@@ -48,7 +51,7 @@
     <?php if (session()->getFlashdata('error')): ?>
       <div class="flash flash-error">
         <i class="bi bi-exclamation-circle-fill"></i>
-        <?= esc(session()->getFlashdata('error')) ?>
+        <?= session()->getFlashdata('error') ?>
       </div>
     <?php endif; ?>
 
