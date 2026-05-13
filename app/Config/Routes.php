@@ -21,7 +21,7 @@ $routes->get('/', 'Home::index');
 $routes->get('/dashboard', 'Home::dashboard');
 $routes->get('/dashboard-admin', 'Home::dashboardAdmin');
 $routes->get('/formulaire-demande', 'Home::formulaireDemande');
-$routes->get('/gestion-employe', 'Home::gestionEmploye');
+$routes->get('/gestion-employe', 'EmployeController::gestionEmploye');
 $routes->get('/liste-demande', 'Home::listeDemande');
 $routes->get('/liste-rh', 'Home::listeRh');
 $routes->get('/login', 'Home::login');
@@ -29,4 +29,12 @@ $routes->get('/etudiant', 'Home::etudiantView');
 $routes->get('/template-conges-rh', 'Home::templateCongesRh');
 
 // Exemple avec un autre contrôleur
-$routes->get('/etudiant', 'EtudiantController::index');
+$routes->post('/conges/create', 'CongeController::create');
+$routes->get('/conges/employe/(:num)', 'CongeController::listByEmploye/$1');
+$routes->get('/conges/employe/(:num)/last3', 'CongeController::lastThree/$1');
+
+
+$routes->post('/employes/store', 'EmployeController::store');
+$routes->get('/employes/list', 'EmployeController::list');
+
+

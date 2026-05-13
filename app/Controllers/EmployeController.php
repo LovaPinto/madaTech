@@ -3,15 +3,18 @@
 namespace App\Controllers;
 
 use App\Models\EmployeModel;
+use App\Models\DepartementModel;
 use CodeIgniter\Controller;
 
 class EmployeController extends BaseController
 {
-    protected $employeModel;
+       protected $employeModel;
+    protected $departementModel;
 
     public function __construct()
     {
-        $this->employeModel = new EmployeModel();
+        $this->employeModel     = new EmployeModel();
+        $this->departementModel = new DepartementModel();
     }
 
     // Liste des employés
@@ -26,8 +29,17 @@ class EmployeController extends BaseController
     {
         return view('employes/create');
     }
+       public function gestionEmploye(): string
+    {
+        // Récupérer tous les départements
+        $departements = $this->departementModel->findAll();
 
-    // Enregistrer un nouvel employé
+        // Passer à la vue
+        return view('pages/gestion_employe', ['departements' => $departements]);
+    }
+
+
+    // Création d’un employé
     public function store()
     {
         $this->employeModel->save([
@@ -38,10 +50,17 @@ class EmployeController extends BaseController
             'role'           => $this->request->getPost('role'),
             'departement_id' => $this->request->getPost('departement_id'),
             'date_embauche'  => $this->request->getPost('date_embauche'),
-            'actif'          => $this->request->getPost('actif') ?? 1,
+            'actif'          => 1,
         ]);
 
-        return redirect()->to('/employes');
+        return redirect()->to('/employes/list');
+    }
+
+    // Liste des départements (JSON)
+    public function list()
+    {
+        $departements = $this->departementModel->findAll();
+        return $this->response->setJSON($departements);
     }
 
     // Afficher formulaire d’édition

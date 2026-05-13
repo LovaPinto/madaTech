@@ -44,56 +44,53 @@
     <div class="content">
 
       <!-- Formulaire ajout -->
-      <div class="form-section">
-        <h3><i class="bi bi-person-plus" style="color:var(--forest);margin-right:6px"></i>Ajouter un employé</h3>
-        <div class="form-grid-2" style="margin-bottom:1rem">
-          <div class="f-group">
-            <label class="f-label">Prénom</label>
-            <input type="text" class="f-input" placeholder="Jean"/>
-          </div>
-          <div class="f-group">
-            <label class="f-label">Nom</label>
-            <input type="text" class="f-input" placeholder="Rakoto"/>
-          </div>
-          <div class="f-group">
-            <label class="f-label">Email</label>
-            <input type="email" class="f-input" placeholder="jean.rakoto@techmada.mg"/>
-          </div>
-          <div class="f-group">
-            <label class="f-label">Mot de passe initial</label>
-            <input type="password" class="f-input" placeholder="À communiquer à l'employé"/>
-          </div>
-          <div class="f-group">
-            <label class="f-label">Département</label>
-            <select class="f-select">
-              <option>IT</option>
-              <option>Finance</option>
-              <option>Marketing</option>
-              <option>RH</option>
-            </select>
-          </div>
-          <div class="f-group">
-            <label class="f-label">Rôle</label>
-            <select class="f-select">
-              <option value="employe">Employé</option>
-              <option value="rh">Responsable RH</option>
-              <option value="admin">Administrateur</option>
-            </select>
-          </div>
-          <div class="f-group">
-            <label class="f-label">Date d'embauche</label>
-            <input type="date" class="f-input" value="2025-06-13"/>
-          </div>
-        </div>
-        <div class="flash flash-info" style="margin-bottom:1rem">
-          <i class="bi bi-info-circle-fill"></i>
-          <span style="font-size:.82rem">Les soldes de congés seront initialisés automatiquement selon les types de congé configurés.</span>
-        </div>
-        <div class="form-actions">
-          <button class="btn-forest"><i class="bi bi-plus"></i> Créer l'employé</button>
-          <button class="btn-secondary">Réinitialiser</button>
-        </div>
-      </div>
+<form action="<?= base_url('/employes/store') ?>" method="post">
+  <div class="form-grid-2">
+    <div class="f-group">
+      <label class="f-label">Prénom</label>
+      <input type="text" name="prenom" class="f-input" placeholder="Jean" required/>
+    </div>
+    <div class="f-group">
+      <label class="f-label">Nom</label>
+      <input type="text" name="nom" class="f-input" placeholder="Rakoto" required/>
+    </div>
+    <div class="f-group">
+      <label class="f-label">Email</label>
+      <input type="email" name="email" class="f-input" placeholder="jean.rakoto@techmada.mg" required/>
+    </div>
+    <div class="f-group">
+      <label class="f-label">Mot de passe initial</label>
+      <input type="password" name="password" class="f-input" required/>
+    </div>
+    <div class="f-group">
+      <label class="f-label">Département</label>
+      <select name="departement_id" class="f-select" required>
+        <option value="1">IT</option>
+        <option value="2">Finance</option>
+        <option value="3">Marketing</option>
+        <option value="4">RH</option>
+      </select>
+    </div>
+    <div class="f-group">
+      <label class="f-label">Rôle</label>
+      <select name="role" class="f-select" required>
+        <option value="employe">Employé</option>
+        <option value="rh">Responsable RH</option>
+        <option value="admin">Administrateur</option>
+      </select>
+    </div>
+    <div class="f-group">
+      <label class="f-label">Date d'embauche</label>
+      <input type="date" name="date_embauche" class="f-input" required/>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <button class="btn-forest" type="submit"><i class="bi bi-plus"></i> Créer l'employé</button>
+    <button class="btn-secondary" type="reset">Réinitialiser</button>
+  </div>
+</form>
+
 
       <!-- Liste employés -->
       <div class="data-card">
