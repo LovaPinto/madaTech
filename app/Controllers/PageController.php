@@ -150,11 +150,11 @@ class PageController extends BaseController
             ->getResultArray();
 
         $baseQuery = $db->table('conges c')
-            ->select('c.id, c.date_debut, c.date_fin, c.nb_jours, c.statut, c.commentaire_rh, c.motif, c.created_at, tc.libelle AS type, tc.deductible, e.prenom, e.nom, d.nom AS departement, d.id AS departement_id, vs.jours_restants')
+            ->select('c.id, c.date_debut, c.date_fin, c.nb_jours, c.statut, c.commentaire_rh, c.motif, c.created_at, tc.libelle AS type, tc.deductible, e.prenom, e.nom, d.nom AS departement, d.id AS departement_id, (s.jours_attribues - s.jours_pris) AS jours_restants')
             ->join('employes e', 'e.id = c.employe_id')
             ->join('departements d', 'd.id = e.departement_id', 'left')
             ->join('types_conge tc', 'tc.id = c.type_conge_id', 'left')
-            ->join('v_soldes vs', 'vs.employe_id = e.id AND vs.type_conge_id = tc.id AND vs.annee = ' . $db->escape($year), 'left');
+            ->join('soldes s', 's.employe_id = e.id AND s.type_conge_id = tc.id AND s.annee = ' . $db->escape($year), 'left');
 
         if ($statutFilter !== '') {
             $baseQuery->where('c.statut', $statutFilter);

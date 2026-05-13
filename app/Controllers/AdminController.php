@@ -44,6 +44,7 @@ class AdminController extends BaseController
         $today = date('Y-m-d');
         $monthStart = date('Y-m-01');
         $monthEnd = date('Y-m-t');
+        $year = (int) date('Y');
 
         $stats = [
             'employes_actifs' => (int) $db->table('employes')->where('actif', 1)->countAllResults(),
@@ -70,9 +71,49 @@ class AdminController extends BaseController
             ->get()
             ->getResultArray();
 
+        $absents = $db->table('conges c')
+            ->select('c.date_fin, tc.libelle AS type, e.prenom, e.nom')
+            ->join('types_conge tc', 'tc.id = c.type_conge_id', 'left')
+            ->join('employes e', 'e.id = c.employe_id', 'left')
+            ->where('c.statut', 'approuvee')
+            ->where('c.date_debut <=', $today)
+            ->where('c.date_fin >=', $today)
+            ->orderBy('c.date_fin', 'ASC')
+            ->limit(5)
+            ->get()
+            ->getResultArray();
+
+        $criticalSoldes = [];
+        $annuelType = $db->table('types_conge')
+            ->select('id')
+            ->like('libelle', 'annuel')
+            ->get()
+            ->getRowArray();
+        $annuelId = $annuelType['id'] ?? null;
+        if ($annuelId) {
+            $rows = $db->table('soldes s')
+                ->select('s.jours_attribues, s.jours_pris, e.prenom, e.nom')
+                ->join('employes e', 'e.id = s.employe_id')
+                ->where('s.type_conge_id', $annuelId)
+                ->where('s.annee', $year)
+                ->get()
+                ->getResultArray();
+            foreach ($rows as $row) {
+                $restants = (int) $row['jours_attribues'] - (int) $row['jours_pris'];
+                if ($restants <= 2) {
+                    $row['jours_restants'] = $restants;
+                    $criticalSoldes[] = $row;
+                }
+            }
+        }
+        $criticalSoldesCount = count($criticalSoldes);
+
         return view('pages/dasboard_admin', $this->adminContext([
             'stats' => $stats,
             'recentDemandes' => $recentDemandes,
+            'absents' => $absents,
+            'criticalSoldes' => $criticalSoldes,
+            'criticalSoldesCount' => $criticalSoldesCount,
         ]));
     }
 

@@ -43,11 +43,11 @@ $routes->get('admin/historique', 'AdminController::historiqueIndex', ['as' => 'a
 
 
 // Pages personnalisées
-$routes->get('/dashboard', 'Home::dashboard');
-$routes->get('/dashboard-admin', 'Home::dashboardAdmin');
-$routes->get('/gestion-employe', 'Home::gestionEmploye');
-$routes->get('/liste-rh', 'Home::listeRh');
-$routes->get('/login', 'Home::login');
-$routes->get('/etudiant', 'Home::etudiantView');
-$routes->get('/template-conges-rh', 'Home::templateCongesRh');
+// $routes->get('/dashboard', 'Home::dashboard');
+// $routes->get('/dashboard-admin', 'Home::dashboardAdmin');
+// $routes->get('/gestion-employe', 'Home::gestionEmploye');
+// $routes->get('/liste-rh', 'Home::listeRh');
+// $routes->get('/login', 'Home::login');
+// $routes->get('/etudiant', 'Home::etudiantView');
+// $routes->get('/template-conges-rh', 'Home::templateCongesRh');
 
