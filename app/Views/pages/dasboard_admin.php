@@ -7,6 +7,16 @@
     <title>Document</title>
 </head>
 <body>
+<?php
+  $stats = $stats ?? [
+    'employes_actifs' => 0,
+    'demandes_attente' => 0,
+    'approuvees_mois' => 0,
+    'departements' => 0,
+    'absents_aujourdhui' => 0,
+  ];
+  $recentDemandes = $recentDemandes ?? [];
+?>
 
 <!-- ╔══════════════════════════════════════════════════════════════╗
      ║  PAGE 6 — DASHBOARD ADMIN  (admin/dashboard.php)            ║
@@ -52,6 +62,7 @@
       </div>
       <div class="topbar-actions">
         <a href="#page-admin-employes" class="btn-forest" style="padding:7px 14px;font-size:.82rem"><i class="bi bi-person-plus"></i> Ajouter un employé</a>
+        <a href="<?= route_to('logout') ?>" class="icon-btn" title="Déconnexion"><i class="bi bi-box-arrow-right"></i></a>
       </div>
     </div>
 
